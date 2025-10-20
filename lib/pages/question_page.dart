@@ -46,21 +46,25 @@ class _QuestionPageState extends State<QuestionPage> {
 
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(title: Text('quiz')),
+      appBar: AppBar(title: Text('quiz'), backgroundColor: Colors.transparent),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [colorScheme.surface, colorScheme.primary],
+            colors: [
+              Color.fromARGB(255, 18, 27, 47),
+              Color.fromARGB(255, 41, 45, 107),
+            ],
           ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
+              // height: MediaQuery.of(context).size.height * 0.65,
               padding: EdgeInsets.all(20),
-              height: 400,
+              height: 500,
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: quiz.length,

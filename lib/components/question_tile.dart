@@ -13,8 +13,8 @@ class QuestionTile extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
-        border: Border.all(color: Colors.blue),
+        color: Color.fromARGB(225, 28, 40, 61),
+        border: Border.all(color: Color.fromARGB(225, 49, 65, 88)),
 
         borderRadius: BorderRadius.circular(12),
       ),
@@ -27,7 +27,12 @@ class QuestionTile extends StatelessWidget {
             style: TextStyle(color: colorScheme.onSecondary, fontSize: 18),
           ),
 
-          Text(quiz.question),
+          SizedBox(height: 10),
+
+          Text(
+            quiz.question,
+            style: TextStyle(color: colorScheme.onSecondary, fontSize: 16),
+          ),
 
           SizedBox(height: 20),
 
@@ -44,13 +49,30 @@ class QuestionTile extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 10),
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue),
+                  color: Color.fromARGB(255, 44, 60, 81),
+                  border: Border.all(color: Color.fromARGB(225, 49, 65, 88)),
+
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   children: [
-                    Text('${String.fromCharCode(65 + index)}. '), // A, B, C, D
-                    Text(option),
+                    Text(
+                      '${String.fromCharCode(65 + index)}. ',
+                      style: TextStyle(
+                        color: colorScheme.onSecondary,
+                        fontSize: 16,
+                      ),
+                    ), // A, B, C, D
+                    Expanded(
+                      child: Text(
+                        option,
+                        style: TextStyle(
+                          color: colorScheme.onSecondary,
+                          fontSize: 16,
+                        ),
+                        softWrap: true,
+                      ),
+                    ),
                   ],
                 ),
               ),
