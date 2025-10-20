@@ -10,7 +10,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Quiz quizModel = Quiz(question: '', options: [], correctAnswer: '');
+    final Quiz quizModel = Quiz(
+      id: '',
+      question: '',
+      options: [],
+      correctAnswer: '',
+    );
     final themeProvider = Provider.of<ThemeProvider>(context);
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
@@ -132,9 +137,7 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => QuestionPage(quizQuestions: []),
-                        ),
+                        MaterialPageRoute(builder: (context) => QuestionPage()),
                       );
                     },
                   ),
