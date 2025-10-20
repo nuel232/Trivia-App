@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia_app/components/my_button.dart';
+import 'package:trivia_app/models/quiz.dart';
 import 'package:trivia_app/pages/question_page.dart';
 import 'package:trivia_app/theme/theme_provider.dart';
 
@@ -9,6 +10,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Quiz quizModel = Quiz(question: '', options: [], correctAnswer: '');
     final themeProvider = Provider.of<ThemeProvider>(context);
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
@@ -130,7 +132,9 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => QuestionPage(quiz: ,)),
+                        MaterialPageRoute(
+                          builder: (context) => QuestionPage(quizQuestions: []),
+                        ),
                       );
                     },
                   ),

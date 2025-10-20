@@ -9,7 +9,7 @@ class Quiz {
     required this.correctAnswer,
   });
 
-  List<Quiz> quizList = [
+  List<Quiz> _quizQuestions = [
     Quiz(
       question: "What does CPU stand for?",
       options: [
@@ -86,4 +86,7 @@ class Quiz {
       correctAnswer: "Internet Protocol",
     ),
   ];
+
+  //get the the products and the cart
+  List<Quiz> get quizQuestions => _quizQuestions;
 }
