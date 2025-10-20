@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trivia_app/components/my_button.dart';
+import 'package:trivia_app/pages/question_page.dart';
 import 'package:trivia_app/theme/theme_provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,10 +13,12 @@ class HomePage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: colorScheme.surface,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
         title: Text('Tech Trivia'),
         centerTitle: true,
-
         actions: [
           Row(
             children: [
@@ -34,16 +38,109 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-            child: Text(
-              'welcome to Tech trivia a place where you can test your knowledge on everything tech',
-              style: TextStyle(fontSize: 18),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [colorScheme.surface, colorScheme.primary],
           ),
-        ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              // padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: colorScheme.primary,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: colorScheme.onSurface),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 10,
+                    ),
+                    child: Text(
+                      'Challenge your mind with fast-paced tech quizzes. Learn, play, and have fun!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+                  Container(
+                    width: 70,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromARGB(255, 106, 93, 255),
+                          Colors.deepPurple,
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'P',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onPrimary,
+                          fontSize: 35,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+
+                  Text(
+                    'welcome, player',
+                    style: TextStyle(
+                      color: colorScheme.onPrimary,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    'keep growing your knowledge!',
+                    style: TextStyle(color: colorScheme.onSurface),
+                  ),
+
+                  SizedBox(height: 10),
+
+                  MyButton(
+                    text: 'start quiz',
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color.fromARGB(255, 106, 93, 255),
+                        Colors.deepPurple,
+                      ],
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QuestionPage(quiz: ,)),
+                      );
+                    },
+                  ),
+
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
