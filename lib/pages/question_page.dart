@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia_app/components/my_button.dart';
 import 'package:trivia_app/components/question_tile.dart';
-import 'package:trivia_app/models/quiz.dart';
 import 'package:trivia_app/models/quiz_questions.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -24,7 +23,7 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 
   void nextPage() {
-    if (_currentPage < 2) {
+    if (_currentPage < 10) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
@@ -33,7 +32,7 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 
   void prevPage() {
-    if (_currentPage < 2) {
+    if (_currentPage > 0) {
       _pageController.previousPage(
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
@@ -60,9 +59,10 @@ class _QuestionPageState extends State<QuestionPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
+              padding: EdgeInsets.all(20),
               height: 400,
               child: PageView.builder(
-                controller: PageController(),
+                controller: _pageController,
                 itemCount: quiz.length,
                 onPageChanged: (index) {
                   setState(() {

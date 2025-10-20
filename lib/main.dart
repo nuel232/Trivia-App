@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trivia_app/models/quiz_questions.dart';
 import 'package:trivia_app/pages/home_page.dart';
 import 'package:trivia_app/theme/theme_provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      builder: (context, child) => const MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => QuizQuestions()),
+      ],
+      child: const MyApp(),
     ),
   );
 }
