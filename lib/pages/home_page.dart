@@ -10,12 +10,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Quiz quizModel = Quiz(
-      id: '',
-      question: '',
-      options: [],
-      correctAnswer: '',
-    );
     final themeProvider = Provider.of<ThemeProvider>(context);
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(

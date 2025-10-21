@@ -42,7 +42,7 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final quiz = context.watch<QuizQuestions>().quizQuestions;
+    final quizProvider = context.watch<QuizQuestions>().quizQuestions;
 
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
@@ -67,14 +67,14 @@ class _QuestionPageState extends State<QuestionPage> {
               height: 500,
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: quiz.length,
+                itemCount: quizProvider.length,
                 onPageChanged: (index) {
                   setState(() {
                     _currentPage = index;
                   });
                 },
                 itemBuilder: (context, index) {
-                  final currentQuiz = quiz[index];
+                  final currentQuiz = quizProvider[index];
                   return QuestionTile(quiz: currentQuiz);
                 },
               ),
@@ -104,7 +104,7 @@ class _QuestionPageState extends State<QuestionPage> {
                 MyButton(
                   text: 'Next',
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSecondary,
+                    color: colorScheme.onSecondary,
                     fontSize: 16,
                   ),
                   onTap: () => nextPage(),

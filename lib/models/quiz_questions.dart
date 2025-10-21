@@ -90,6 +90,40 @@ class QuizQuestions extends ChangeNotifier {
     ),
   ];
 
-  //get the the products and the cart
+  //get the the question
   List<Quiz> get quizQuestions => _quizQuestions;
+
+  //Map tot  question id to the user answer
+  final Map<String, String> _userAnswers = {};
+
+  //get the answer
+  Map<String, String> get userAnswers => _userAnswers;
+
+  //  Save user's answer
+  void saveAnswer(String questionId, String selectedAnswer) {
+    _userAnswers[questionId] = selectedAnswer;
+    notifyListeners();
+  }
+
+  //  Get answer for specific question (to show selection)
+  String? getAnswer(String questionId) {
+    return _userAnswers[questionId];
+  }
+
+  // Calculate score
+  int calculateScore() {
+    int score = 0;
+    for (var question in _quizQuestions) {
+      if (_userAnswers[question.id] == question.correctAnswer) {
+        score++;
+      }
+    }
+    return score;
+  }
+
+  // ✅ Reset quiz (for retake)
+  void resetQuiz() {
+    _userAnswers.clear();
+    notifyListeners();
+  }
 }

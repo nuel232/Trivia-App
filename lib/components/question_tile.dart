@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:trivia_app/models/quiz.dart';
+import 'package:trivia_app/models/quiz_questions.dart';
 
 class QuestionTile extends StatelessWidget {
   final Quiz quiz;
@@ -9,13 +11,16 @@ class QuestionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final quizProvider = context.watch<QuizQuestions>();
+    final selectedAnswer = quizProvider.getAnswer(
+      quiz.id,
+    ); // Get current answer
 
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Color.fromARGB(225, 28, 40, 61),
         border: Border.all(color: Color.fromARGB(225, 49, 65, 88)),
-
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -40,17 +45,26 @@ class QuestionTile extends StatelessWidget {
             int index = entry.key;
             String option = entry.value;
 
+            //check if selected
+            bool isSelected = selectedAnswer == option;
+
             return GestureDetector(
               onTap: () {
-                // Handle answer selection
-                print('Selected: $option');
+                quizProvider.saveAnswer(quiz.id, option);
               },
               child: Container(
                 margin: EdgeInsets.only(bottom: 10),
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 44, 60, 81),
-                  border: Border.all(color: Color.fromARGB(225, 49, 65, 88)),
+                  color: isSelected
+                      ? Colors.deepPurple.withOpacity(0.3)
+                      : Color.fromARGB(255, 44, 60, 81),
+                  border: Border.all(
+                    color: isSelected
+                        ? Colors.deepPurple
+                        : Color.fromARGB(225, 49, 65, 88),
+                    width: isSelected ? 2 : 1,
+                  ),
 
                   borderRadius: BorderRadius.circular(8),
                 ),
