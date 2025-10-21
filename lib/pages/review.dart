@@ -15,10 +15,6 @@ class Review extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Review Answers'),
-        backgroundColor: Colors.transparent,
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -32,6 +28,7 @@ class Review extends StatelessWidget {
         ),
         child: Column(
           children: [
+            SizedBox(height: 50),
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.all(20),

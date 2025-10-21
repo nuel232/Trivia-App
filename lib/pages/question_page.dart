@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:trivia_app/components/my_button.dart';
 import 'package:trivia_app/components/question_tile.dart';
 import 'package:trivia_app/models/quiz_questions.dart';
+import 'package:trivia_app/pages/home_page.dart';
 import 'package:trivia_app/pages/score_page.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -114,7 +115,6 @@ class _QuestionPageState extends State<QuestionPage> {
 
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(title: Text('quiz'), backgroundColor: Colors.transparent),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -126,9 +126,39 @@ class _QuestionPageState extends State<QuestionPage> {
             ],
           ),
         ),
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Row(
+              children: [
+                MyButton(
+                  icon: Icons.arrow_back,
+                  text: 'back',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: colorScheme.onSecondary,
+                  ),
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                      (route) => false,
+                    );
+                  },
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromARGB(255, 106, 93, 255),
+                      Colors.deepPurple,
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 20),
             // ✅ Timer Display
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),

@@ -40,11 +40,6 @@ class ScorePage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Quiz Complete'),
-        backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: false, // Remove back button
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
